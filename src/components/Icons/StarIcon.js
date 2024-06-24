@@ -2,7 +2,7 @@ import * as React from "react";
 
 const StarIcon = ({
   className,
-  isFavorite = false,
+  favorite = false,
   backgroundColor = "white",
   ...props
 }) => (
@@ -15,7 +15,7 @@ const StarIcon = ({
     className={className}
   >
     <path
-      fill={isFavorite ? "#FFA000" : backgroundColor}
+      fill={favorite ? "#FFA000" : backgroundColor}
       d="m7.608 6.969-5.154.793 4.56 3.667-1.19 5.55 4.163-3.171 5.154 3.171-1.388-5.55 3.865-3.667-5.252-.793-2.38-5.154L7.609 6.97Z"
     />
     <path

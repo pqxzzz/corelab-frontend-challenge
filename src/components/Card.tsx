@@ -1,57 +1,29 @@
 "use client";
-import React, { useState } from "react";
-import { CardProps } from "../types/CardProps";
+import React from "react";
 import StarIcon from "./Icons/StarIcon";
 import PenIcon from "./Icons/PenIcon";
 import XIcon from "./Icons/XIcon";
 import InkBucket from "./Icons/InkBucket";
 import customColors, { CustomColorKey } from "../utils/customColors";
+import { CardComponentProps } from "../types/CardProps";
 
-const Card: React.FC<CardProps> = ({
+const Card: React.FC<CardComponentProps> = ({
   title,
-  isFavorite,
+  favorite,
   description,
-  color
+  color,
+  index,
+  isEditing,
+  isColorPickerOpen,
+  onColorPickerToggle,
+  onCloseColorPicker,
+  onEditToggle,
+  onTitleChange,
+  onDescriptionChange,
+  onFavoriteToggle,
+  onColorSelect
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentTitle, setCurrentTitle] = useState(title);
-  const [currentDescription, setCurrentDescription] = useState(description);
-  const [currentIsFavorite, setCurrentIsFavorite] = useState(isFavorite);
-  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState<CustomColorKey>(
-    color as CustomColorKey
-  );
-
-  const handleChangeIsEditing = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentTitle(e.target.value);
-  };
-
-  const handleDescriptionChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setCurrentDescription(e.target.value);
-  };
-
-  const handleFavoriteToggle = () => {
-    if (isEditing) {
-      setCurrentIsFavorite(!currentIsFavorite);
-    }
-  };
-
-  const handleInkBucketClick = () => {
-    setIsColorPickerOpen(!isColorPickerOpen);
-  };
-
-  const handleColorSelect = (color: CustomColorKey) => {
-    setCurrentColor(color);
-    setIsColorPickerOpen(false);
-  };
-
-  const backgroundColor = customColors[currentColor] || "white";
+  const backgroundColor = customColors[color as CustomColorKey] || "white";
 
   return (
     <div
@@ -63,15 +35,15 @@ const Card: React.FC<CardProps> = ({
           maxLength={25}
           placeholder="Título"
           disabled={!isEditing}
-          value={currentTitle}
-          onChange={handleTitleChange}
+          value={title}
+          onChange={(e) => onTitleChange(e.target.value)}
           className={`font-bold text-black placeholder:text-black focus:outline-none bg-transparent`}
         />
-        <button onClick={handleFavoriteToggle}>
+        <button onClick={onFavoriteToggle}>
           <StarIcon
             className="fill-black"
             backgroundColor={backgroundColor}
-            isFavorite={currentIsFavorite}
+            favorite={favorite}
           />
         </button>
       </div>
@@ -79,8 +51,8 @@ const Card: React.FC<CardProps> = ({
         <textarea
           placeholder="Descrição"
           disabled={!isEditing}
-          value={currentDescription}
-          onChange={handleDescriptionChange}
+          value={description}
+          onChange={(e) => onDescriptionChange(e.target.value)}
           className="text-text-text h-24 resize-none w-full placeholder:text-black focus:outline-none bg-transparent"
         />
       </div>
@@ -91,7 +63,7 @@ const Card: React.FC<CardProps> = ({
               isEditing ? "bg-buttonSelected" : ""
             } rounded-full focus:outline-none`}
           >
-            <button onClick={handleChangeIsEditing}>
+            <button onClick={onEditToggle}>
               <PenIcon
                 width={24}
                 heigh={24}
@@ -100,7 +72,7 @@ const Card: React.FC<CardProps> = ({
             </button>
           </div>
 
-          <button onClick={handleInkBucketClick}>
+          <button onClick={onColorPickerToggle}>
             <InkBucket width={18} heigh={17} />
           </button>
 
@@ -113,7 +85,7 @@ const Card: React.FC<CardProps> = ({
                   style={{
                     backgroundColor: customColors[colorKey as CustomColorKey]
                   }}
-                  onClick={() => handleColorSelect(colorKey as CustomColorKey)}
+                  onClick={() => onColorSelect(colorKey as CustomColorKey)}
                 />
               ))}
             </div>
