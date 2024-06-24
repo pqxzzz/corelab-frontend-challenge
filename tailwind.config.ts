@@ -17,10 +17,27 @@ const config: Config = {
         border: {
           primary: "#D9D9D9"
         },
-        background: "#F0F2F5"
+        background: "#F0F2F5",
+        buttonSelected: "#FFE3B3",
+        custom: {
+          lightBlue: "#BAE2FF",
+          lightGreen: "#B9FFDD",
+          lightYellow: "#FFE8AC",
+          lightOrange: "#FFCAB9",
+          lightRed: "#F99494",
+          skyBlue: "#9DD6FF",
+          lightPurple: "#ECA1FF",
+          limeGreen: "#DAFF8B",
+          coral: "#FFA285",
+          lightGray: "#CDCDCD",
+          mediumGray: "#979797",
+          beige: "#A99A7C",
+          white: "#FFFFFF"
+        }
       }
     }
   },
   plugins: []
 };
+
 export default config;

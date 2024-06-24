@@ -1,6 +1,11 @@
 import * as React from "react";
 
-const StarIcon = ({ className, isFavorite = false, ...props }) => (
+const StarIcon = ({
+  className,
+  isFavorite = false,
+  backgroundColor = "white",
+  ...props
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
@@ -10,7 +15,7 @@ const StarIcon = ({ className, isFavorite = false, ...props }) => (
     className={className}
   >
     <path
-      fill={isFavorite ? "#FFA000" : "white"}
+      fill={isFavorite ? "#FFA000" : backgroundColor}
       d="m7.608 6.969-5.154.793 4.56 3.667-1.19 5.55 4.163-3.171 5.154 3.171-1.388-5.55 3.865-3.667-5.252-.793-2.38-5.154L7.609 6.97Z"
     />
     <path
