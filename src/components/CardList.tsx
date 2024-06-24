@@ -15,7 +15,8 @@ const CardList: React.FC = () => {
     handleDescriptionChange,
     handleFavoriteToggle,
     handleColorSelect,
-    fetchTodos
+    fetchTodos,
+    handleDeleteTodo
   } = useTodos();
 
   useEffect(() => {
@@ -30,8 +31,7 @@ const CardList: React.FC = () => {
       {favoriteTodos.length > 0 && (
         <h2 className="text-xl font-bold mb-4">Favoritos</h2>
       )}
-      {favoriteTodos.map((todo, index) => {
-        // obs: garantir que o todo com favorito esta sendo modificado.
+      {favoriteTodos.map((todo) => {
         const todoIndex = todos.findIndex((t) => t.id === todo.id);
         return (
           <Card
@@ -57,13 +57,14 @@ const CardList: React.FC = () => {
             onColorSelect={(color: CustomColorKey) =>
               handleColorSelect(todoIndex, color)
             }
+            onDeleteTodo={() => handleDeleteTodo(todo.id!)}
           />
         );
       })}
       {favoriteTodos.length > 0 && (
         <h2 className="text-xl font-bold mt-8 mb-4">Outros</h2>
       )}
-      {nonFavoriteTodos.map((todo, index) => {
+      {nonFavoriteTodos.map((todo) => {
         const todoIndex = todos.findIndex((t) => t.id === todo.id);
         return (
           <Card
@@ -89,6 +90,7 @@ const CardList: React.FC = () => {
             onColorSelect={(color: CustomColorKey) =>
               handleColorSelect(todoIndex, color)
             }
+            onDeleteTodo={() => handleDeleteTodo(todo.id!)}
           />
         );
       })}

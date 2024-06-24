@@ -68,11 +68,21 @@ const useTodos = () => {
     }
   };
 
-  const handleColorSelect = (index: number, color: CustomColorKey) => {
+  const handleColorSelect = async (index: number, color: CustomColorKey) => {
     const updatedTodos = [...todos];
     updatedTodos[index].color = color;
     setTodos(updatedTodos);
     setOpenColorPickerIndex(null);
+    await saveTodoChanges(updatedTodos[index]);
+  };
+
+  const handleDeleteTodo = async (id: number) => {
+    try {
+      await api.delete(`/todo/delete/${id}`);
+      setTodos(todos.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.error("Erro ao excluir a nota:", error);
+    }
   };
 
   const saveTodoChanges = async (todo: CardProps) => {
@@ -80,6 +90,27 @@ const useTodos = () => {
       await api.put(`/todo/${todo.id}`, todo);
     } catch (error) {
       console.error("Falha ao salvar alterações:", error);
+    }
+  };
+
+  const handleCreateTodo = async (
+    title: string,
+    description: string,
+    favorite: boolean
+  ) => {
+    const newTodo = {
+      title,
+      description,
+      favorite,
+      color: "white"
+    };
+
+    try {
+      const response = await api.post("/todo", newTodo);
+      const createdTodo = response.data;
+      setTodos([...todos, createdTodo]);
+    } catch (error) {
+      console.error("Erro ao criar nova nota:", error);
     }
   };
 
@@ -93,7 +124,9 @@ const useTodos = () => {
     handleDescriptionChange,
     handleFavoriteToggle,
     handleColorSelect,
-    fetchTodos
+    fetchTodos,
+    handleDeleteTodo,
+    handleCreateTodo
   };
 };
 

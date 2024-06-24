@@ -19,4 +19,5 @@ export interface CardComponentProps extends CardProps {
   onDescriptionChange: (newDescription: string) => void;
   onFavoriteToggle: () => void;
   onColorSelect: (color: CustomColorKey) => void;
+  onDeleteTodo: () => void;
 }

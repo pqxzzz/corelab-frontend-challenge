@@ -1,11 +1,11 @@
+"use client";
 import React, { useState } from "react";
 import StarIcon from "./Icons/StarIcon";
 import CheckIcon from "./Icons/CheckIcon";
-import api from "@/services/api";
 import useTodos from "@/hooks/useTodos";
 
-const CreateNote = () => {
-  const { fetchTodos } = useTodos();
+const CreateNote: React.FC = () => {
+  const { handleCreateTodo } = useTodos();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [favorite, setFavorite] = useState(false);
@@ -24,23 +24,11 @@ const CreateNote = () => {
     setFavorite(!favorite);
   };
 
-  const handleCreateNote = async () => {
-    const newNote = {
-      title,
-      description,
-      favorite,
-      color: "white"
-    };
-
-    try {
-      await api.post("/todo", newNote);
-      setTitle("");
-      setDescription("");
-      setFavorite(false);
-      fetchTodos();
-    } catch (error) {
-      console.error("Erro ao criar nova nota:", error);
-    }
+  const handleCreateNote = () => {
+    handleCreateTodo(title, description, favorite);
+    setTitle("");
+    setDescription("");
+    setFavorite(false);
   };
 
   return (

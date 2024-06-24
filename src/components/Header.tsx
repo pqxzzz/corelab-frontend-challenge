@@ -10,9 +10,6 @@ const Header = () => {
           <Image src={logo} alt={"logo corelab todo"} width={36} height={36} />
           <h3 className="text-text-primary">CoreNotes</h3>
         </div>
-        <div className="flex items-center border border-border-primary py-2 px-2 rounded-sm shadow-md">
-          <input placeholder="Pesquisar notas" className="text-xs" />
-        </div>
       </div>
     </header>
   );

@@ -21,7 +21,8 @@ const Card: React.FC<CardComponentProps> = ({
   onTitleChange,
   onDescriptionChange,
   onFavoriteToggle,
-  onColorSelect
+  onColorSelect,
+  onDeleteTodo
 }) => {
   const backgroundColor = customColors[color as CustomColorKey] || "white";
 
@@ -92,7 +93,7 @@ const Card: React.FC<CardComponentProps> = ({
           )}
         </div>
         <div>
-          <button>
+          <button onClick={onDeleteTodo}>
             <XIcon />
           </button>
         </div>
