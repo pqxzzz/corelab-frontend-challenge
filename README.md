@@ -32,7 +32,7 @@ FrontEnd application built with Next.js and TypeScript. This application allows 
 
 ```bash
 git clone https://github.com/pqxzzz/corelab-frontend-challenge.git
-cd corenotes
+cd corelab-frontend-challenge
 ```
 
 2. install dependencies
