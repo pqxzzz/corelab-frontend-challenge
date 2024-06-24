@@ -27,7 +27,7 @@ const TodosContext = createContext<TodosContextProps | undefined>(undefined);
 export const useTodos = () => {
   const context = useContext(TodosContext);
   if (!context) {
-    throw new Error("useTodos must be used within a TodosProvider");
+    throw new Error("useTodos deve ser usado com provider");
   }
   return context;
 };
