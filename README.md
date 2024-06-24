@@ -1,14 +1,14 @@
-# CoreNotes
+# CoreNotes FrontEnd
 
-CoreNotes is a simple and intuitive note-taking application built with Next.js and TypeScript. It allows users to create, edit, favorite, and delete notes. Each note can be customized with different background colors.
+FrontEnd application built with Next.js and TypeScript. This application allows users to create, edit, favorite, change card color and delete notes.
 
 ## Features
 
 - Create new notes
 - Edit existing notes
 - Mark notes as favorite
-- Delete notes
 - Change note background color
+- Delete notes
 - Responsive design
 
 ## Technologies Used
@@ -17,24 +17,20 @@ CoreNotes is a simple and intuitive note-taking application built with Next.js a
 - React
 - TypeScript
 - Tailwind CSS
-- Axios (for API calls)
-- Node.js (Backend)
-- Express (Backend)
-- MongoDB (Database)
+- Axios
+- PHP/Laravel (Backend)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
-- MongoDB
+- npm or similar
 
 ### Installation
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/corenotes.git
+git clone https://github.com/pqxzzz/corelab-frontend-challenge.git
 cd corenotes
 ```
