@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import StarIcon from "./Icons/StarIcon";
 import CheckIcon from "./Icons/CheckIcon";
-import useTodos from "@/hooks/useTodos";
+import { useTodos } from "@/context/TodosContext";
 
-const CreateNote: React.FC = () => {
+const CreateNote = () => {
   const { handleCreateTodo } = useTodos();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,8 +24,8 @@ const CreateNote: React.FC = () => {
     setFavorite(!favorite);
   };
 
-  const handleCreateNote = () => {
-    handleCreateTodo(title, description, favorite);
+  const handleCreate = async () => {
+    await handleCreateTodo(title, description, favorite);
     setTitle("");
     setDescription("");
     setFavorite(false);
@@ -56,7 +56,7 @@ const CreateNote: React.FC = () => {
         />
       </div>
       <div className="flex items-center justify-end px-6 py-3">
-        <button onClick={handleCreateNote} className="">
+        <button onClick={handleCreate} className="">
           <CheckIcon />
         </button>
       </div>

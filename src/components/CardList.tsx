@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Card from "@/components/Card";
-import useTodos from "@/hooks/useTodos";
+import { useTodos } from "@/context/TodosContext";
 import { CustomColorKey } from "@/utils/customColors";
 
 const CardList: React.FC = () => {
